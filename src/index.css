@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-finance-bg: #F5F7FA;
+  --color-finance-surface: #FFFFFF;
+  --color-finance-primary: #4F6EF7;
+  --color-finance-text-primary: #1A1D23;
+  --color-finance-text-secondary: #6B7280;
+  --color-finance-border: #E5E7EB;
+  --color-finance-success: #22C55E;
+  --color-finance-danger: #EF4444;
+  --font-inter: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-finance-bg);
+  color: var(--color-finance-text-primary);
+  font-family: var(--font-inter);
+  margin: 0;
+  padding: 0;
+}
