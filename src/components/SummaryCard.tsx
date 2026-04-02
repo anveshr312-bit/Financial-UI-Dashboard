@@ -19,10 +19,10 @@ export const SummaryCard = ({ label, value, indicatorText, indicatorType }: Summ
     'bg-finance-border border';
 
   return (
-    <div className="bg-finance-surface rounded-[12px] p-[20px] shadow-[0_1px_4px_rgba(0,0,0,0.07)] transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+    <div className="card-transition bg-finance-surface rounded-[12px] p-[20px] shadow-[0_1px_4px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] flex flex-col justify-between cursor-default border border-transparent hover:border-finance-border/50">
       <h3 className="text-[12px] uppercase tracking-[0.05em] text-finance-text-secondary font-semibold mb-2">{label}</h3>
-      <div className="flex items-end justify-between">
-        <span className="text-[28px] font-bold text-finance-text-primary leading-none">{value}</span>
+      <div className="flex items-end justify-between mt-1">
+        <span className="text-[32px] font-extrabold text-finance-text-primary tracking-tight leading-none">{value}</span>
         {indicatorText && (
           <div className={`px-2 py-1 rounded text-xs font-semibold ${indicatorColor} ${indicatorBg}`}>
             {indicatorText}

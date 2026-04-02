@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Transaction, Filters, Role } from '../types';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { Transaction, Filters, Role, Theme } from '../types';
 import { initialTransactions } from '../data/mockData';
 
 interface DashboardContextType {
@@ -10,6 +10,9 @@ interface DashboardContextType {
   setRole: (role: Role) => void;
   addTransaction: (tx: Omit<Transaction, 'id'>) => void;
   updateTransaction: (id: string, tx: Omit<Transaction, 'id'>) => void;
+  deleteTransaction: (id: string) => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
 const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -28,17 +31,42 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
     setFiltersState(prev => ({ ...prev, ...newFilters }));
   };
 
+  const [theme, setTheme] = useState<Theme>('light');
+
+  // Load and apply theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('finance_theme') as Theme;
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('finance_theme', theme);
+  }, [theme]);
+
   const addTransaction = (tx: Omit<Transaction, 'id'>) => {
     const newTx = { ...tx, id: Math.random().toString(36).substr(2, 9) };
     setTransactions(prev => [...prev, newTx]);
   };
 
-  const updateTransaction = (id: string, updatedTx: Omit<Transaction, 'id'>) => {
-    setTransactions(prev => prev.map(tx => (tx.id === id ? { ...updatedTx, id } : tx)));
+  const updateTransaction = (id: string, tx: Omit<Transaction, 'id'>) => {
+    setTransactions(prev => prev.map(t => t.id === id ? { ...tx, id } : t));
+  };
+
+  const deleteTransaction = (id: string) => {
+    setTransactions(prev => prev.filter(t => t.id !== id));
   };
 
   return (
-    <DashboardContext.Provider value={{ transactions, filters, role, setFilters, setRole, addTransaction, updateTransaction }}>
+    <DashboardContext.Provider value={{ transactions, filters, role, setFilters, setRole, addTransaction, updateTransaction, deleteTransaction, theme, setTheme }}>
       {children}
     </DashboardContext.Provider>
   );

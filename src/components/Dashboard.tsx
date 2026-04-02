@@ -6,6 +6,7 @@ import { TransactionsSection } from './TransactionsSection';
 import { InsightCard } from './InsightCard';
 import { TransactionModal } from './TransactionModal';
 import { Transaction } from '../types';
+import { PieChart, TrendingUp, TrendingDown, Activity } from 'lucide-react';
 
 export const Dashboard = () => {
   const { transactions, addTransaction, updateTransaction } = useDashboard();
@@ -35,15 +36,13 @@ export const Dashboard = () => {
   });
 
   // Basic Insight: Key Observation
-  const percentOfTotal = totalExpense > 0 ? ((highestCategoryAmount / totalExpense) * 100).toFixed(0) : 0;
-  const keyObservation = totalExpense > 0 
-    ? `${highestCategory} makes up ${percentOfTotal}% of your total expenses.` 
-    : 'No expenses tracked yet.';
+  const percentOfTotal = totalExpense > 0 ? ((highestCategoryAmount / totalExpense) * 100).toFixed(0) : "0";
 
   // Insight: Monthly Comparison (Dummy delta calculation relative to 0)
   const previousMonthExpense = totalExpense * 0.85; // Mock 85% of current
   const delta = totalExpense > 0 ? (((totalExpense - previousMonthExpense) / previousMonthExpense) * 100).toFixed(1) : '0.0';
   const deltaIndicator = totalExpense > 0 ? `+${delta}%` : '0%';
+  const isDeltaNegativeNum = totalExpense < previousMonthExpense;
 
   const handleOpenAdd = () => {
     setEditingTx(undefined);
@@ -105,17 +104,32 @@ export const Dashboard = () => {
           <InsightCard 
             title="Highest Spending" 
             value={highestCategory} 
-            description={`$${highestCategoryAmount.toLocaleString()} this period`}
+            description={
+              <>
+                <span className="font-semibold text-finance-text-primary shadow-sm">${highestCategoryAmount.toLocaleString()}</span> this period
+              </>
+            }
+            icon={<PieChart size={16} />}
           />
           <InsightCard 
             title="Monthly Comparison" 
             value={`$${totalExpense.toLocaleString()}`} 
-            description={`${deltaIndicator} vs last month`}
+            description={
+              <>
+                <span className={`font-semibold ${isDeltaNegativeNum ? 'text-finance-success' : 'text-finance-danger'}`}>{deltaIndicator}</span> vs last month
+              </>
+            }
+            icon={isDeltaNegativeNum ? <TrendingDown size={16} /> : <TrendingUp size={16} />}
           />
           <InsightCard 
             title="Key Observation" 
             value="Spending Trend" 
-            description={keyObservation}
+            description={
+              totalExpense > 0 
+              ? <>{highestCategory} makes up <span className="font-bold text-finance-primary">{percentOfTotal}%</span> of total expenses.</>
+              : 'No expenses tracked yet.'
+            }
+            icon={<Activity size={16} />}
           />
         </div>
       </section>

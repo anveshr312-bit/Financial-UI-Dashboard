@@ -1,4 +1,5 @@
 export type Role = 'viewer' | 'admin';
+export type Theme = 'light' | 'dark';
 
 export type TransactionType = 'income' | 'expense';
 

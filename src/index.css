@@ -1,21 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-finance-bg: #F5F7FA;
-  --color-finance-surface: #FFFFFF;
-  --color-finance-primary: #4F6EF7;
-  --color-finance-text-primary: #1A1D23;
-  --color-finance-text-secondary: #6B7280;
-  --color-finance-border: #E5E7EB;
-  --color-finance-success: #22C55E;
-  --color-finance-danger: #EF4444;
+  /* Using standard mapping for Tailwind v4 */
+  --color-finance-bg: var(--bg-color);
+  --color-finance-surface: var(--surface-color);
+  --color-finance-primary: var(--primary-color);
+  --color-finance-text-primary: var(--text-primary);
+  --color-finance-text-secondary: var(--text-secondary);
+  --color-finance-border: var(--border-color);
+  --color-finance-success: var(--success-color);
+  --color-finance-danger: var(--danger-color);
+  --color-finance-hover: var(--hover-color);
+  
   --font-inter: 'Inter', sans-serif;
 }
 
+:root {
+  /* Light Theme */
+  --bg-color: #F5F7FA;
+  --surface-color: #FFFFFF;
+  --primary-color: #4F6EF7;
+  --text-primary: #1A1D23;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --success-color: #22C55E;
+  --danger-color: #EF4444;
+  --hover-color: #F9FAFB;
+}
+
+.dark {
+  /* Dark Theme */
+  --bg-color: #0F172A;
+  --surface-color: #1E293B;
+  --primary-color: #4F6EF7;  /* Accent remains consistent */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --border-color: #334155;
+  --success-color: #22C55E;
+  --danger-color: #EF4444;
+  --hover-color: #334155; 
+}
+
 body {
-  background-color: var(--color-finance-bg);
-  color: var(--color-finance-text-primary);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   font-family: var(--font-inter);
   margin: 0;
   padding: 0;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Base interactive transitions */
+button, select, input, a, .card-transition {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

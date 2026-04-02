@@ -56,7 +56,7 @@ export const ChartsSection = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white p-3 rounded shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-finance-border flex flex-col gap-1 text-[12px]">
+        <div className="bg-finance-surface p-3 rounded shadow-[0_8px_24px_rgba(0,0,0,0.15)] border border-finance-border flex flex-col gap-1 text-[12px]">
           <p className="font-semibold text-finance-text-primary m-0">{label || payload[0].name}</p>
           <p className="text-finance-primary font-medium m-0">
             ${payload[0].value.toLocaleString()}
@@ -79,7 +79,7 @@ export const ChartsSection = () => {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                 <XAxis dataKey="date" stroke="#6B7280" fontSize={12} tickLine={false} axisLine={false} dy={10} />
                 <YAxis stroke="#6B7280" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltip />} wrapperStyle={{ zIndex: 100 }} />
                 <Line type="monotone" dataKey="balance" stroke="#4F6EF7" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
               </LineChart>
             </ResponsiveContainer>
@@ -93,8 +93,17 @@ export const ChartsSection = () => {
       <div className="bg-finance-surface rounded-[12px] p-[20px] shadow-[0_1px_4px_rgba(0,0,0,0.07)]">
         <h2 className="text-[16px] font-semibold text-finance-text-primary mb-6">Spending Breakdown</h2>
         <div className="h-[250px] w-full relative">
+          {/* Centered Total (rendered behind the responsive container to prevent Tooltip overlap) */}
+          {donutData.length > 0 && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
+              <span className="text-[12px] text-finance-text-secondary font-semibold uppercase tracking-wider">Total</span>
+              <span className="text-[20px] font-bold text-finance-text-primary">
+                ${donutData.reduce((acc, curr) => acc + curr.value, 0).toLocaleString()}
+              </span>
+            </div>
+          )}
           {donutData.length > 0 ? (
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" className="relative z-10">
               <PieChart>
                 <Pie
                   data={donutData}
@@ -110,20 +119,11 @@ export const ChartsSection = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltip />} wrapperStyle={{ zIndex: 100 }} />
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <div className="h-full flex items-center justify-center text-finance-text-secondary text-sm">No expenses recorded</div>
-          )}
-          {/* Centered Total */}
-          {donutData.length > 0 && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-[12px] text-finance-text-secondary font-semibold uppercase tracking-wider">Total</span>
-              <span className="text-[20px] font-bold text-finance-text-primary">
-                ${donutData.reduce((acc, curr) => acc + curr.value, 0).toLocaleString()}
-              </span>
-            </div>
+            <div className="h-full flex items-center justify-center text-finance-text-secondary text-sm relative z-10">No expenses recorded</div>
           )}
         </div>
       </div>

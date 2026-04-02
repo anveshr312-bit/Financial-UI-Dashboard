@@ -48,12 +48,12 @@ export const TransactionsSection = ({ onAdd, onEdit }: TransactionsSectionProps)
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-[16px] font-semibold text-finance-text-primary m-0">Transactions</h2>
+      <div className="flex justify-between items-center mb-1">
+        <h2 className="text-[16px] font-semibold text-finance-text-primary m-0 tracking-tight">Transactions</h2>
         {role === 'admin' && (
           <button 
             onClick={onAdd}
-            className="flex items-center gap-2 bg-finance-primary hover:bg-blue-600 transition-colors text-white px-4 py-2 rounded-[8px] text-sm font-medium shadow-sm"
+            className="flex items-center gap-2 bg-finance-primary hover:bg-finance-primary/90 transition-all duration-200 text-white px-4 py-2 rounded-[8px] text-sm font-medium shadow-[0_2px_8px_rgba(79,110,247,0.3)] hover:shadow-[0_4px_12px_rgba(79,110,247,0.4)] hover:-translate-y-[1px]"
           >
             <Plus size={16} /> Add Transaction
           </button>
@@ -113,7 +113,7 @@ export const TransactionsSection = ({ onAdd, onEdit }: TransactionsSectionProps)
       <div className="bg-finance-surface rounded-[12px] shadow-[0_1px_4px_rgba(0,0,0,0.07)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="text-[12px] uppercase tracking-[0.05em] text-finance-text-secondary border-b border-finance-border bg-[#F9FAFB]/50">
+            <thead className="text-[12px] uppercase tracking-[0.05em] text-finance-text-secondary border-b border-finance-border bg-finance-hover">
               <tr>
                 <th className="px-6 py-4 font-semibold">Date</th>
                 <th className="px-6 py-4 font-semibold">Category</th>
@@ -125,7 +125,7 @@ export const TransactionsSection = ({ onAdd, onEdit }: TransactionsSectionProps)
             <tbody className="divide-y divide-finance-border">
               {filteredTransactions.length > 0 ? (
                 filteredTransactions.map(tx => (
-                  <tr key={tx.id} className="hover:bg-[#F9FAFB] transition-colors rounded-[6px]">
+                  <tr key={tx.id} className="hover:bg-finance-hover group transition-colors duration-150 rounded-[6px]">
                     <td className="px-6 py-4 text-finance-text-primary">{new Date(tx.date).toLocaleDateString()}</td>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-finance-bg border border-finance-border text-finance-text-primary">
@@ -146,7 +146,7 @@ export const TransactionsSection = ({ onAdd, onEdit }: TransactionsSectionProps)
                       <td className="px-6 py-4 text-right">
                         <button 
                           onClick={() => onEdit(tx.id)}
-                          className="inline-flex items-center justify-center w-8 h-8 rounded-full hover:bg-finance-bg text-finance-text-secondary hover:text-finance-primary transition-colors"
+                          className="inline-flex items-center justify-center w-8 h-8 rounded-full text-finance-text-secondary hover:text-finance-primary hover:bg-finance-bg transition-all duration-200 hover:scale-110 opacity-70 group-hover:opacity-100"
                         >
                           <Pencil size={14} />
                         </button>
@@ -156,11 +156,17 @@ export const TransactionsSection = ({ onAdd, onEdit }: TransactionsSectionProps)
                 ))
               ) : (
                 <tr>
-                  <td colSpan={role === 'admin' ? 5 : 4} className="px-6 py-12 text-center">
-                    <div className="flex flex-col items-center justify-center text-finance-text-secondary">
-                      <Filter size={32} className="mb-3 opacity-20" />
-                      <p className="text-sm font-medium">No transactions found</p>
-                      <p className="text-xs mt-1 opacity-70">Try adjusting your filters</p>
+                  <td colSpan={role === 'admin' ? 5 : 4} className="px-6 py-16 text-center">
+                    <div className="flex flex-col items-center justify-center text-finance-text-secondary animate-in fade-in duration-300">
+                      <Filter size={40} className="mb-4 opacity-30 text-finance-primary" />
+                      <p className="text-[15px] font-semibold text-finance-text-primary">No transactions match your filters</p>
+                      <p className="text-sm mt-1 mb-5 opacity-80">Try adjusting filters or add a new transaction</p>
+                      <button 
+                        onClick={() => setFilters({ search: '', category: 'All', type: 'All', sortBy: 'Date' })}
+                        className="px-4 py-2 text-sm font-medium text-finance-text-primary bg-finance-surface border border-finance-border rounded-[8px] hover:bg-finance-hover hover:border-finance-text-secondary/30 transition-all duration-200"
+                      >
+                        Reset Filters
+                      </button>
                     </div>
                   </td>
                 </tr>
