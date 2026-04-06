@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Capital Flow | Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#454386",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#140f54",
+                        "tertiary-container": "#a44100",
+                        "surface-container-highest": "#e2e2eb",
+                        "on-surface": "#191b22",
+                        "on-tertiary-fixed": "#351000",
+                        "inverse-on-surface": "#f0f0f9",
+                        "surface-dim": "#d9d9e2",
+                        "on-background": "#191b22",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-low": "#f3f3fc",
+                        "on-secondary-fixed-variant": "#413f82",
+                        "on-primary-container": "#dad7ff",
+                        "on-surface-variant": "#464555",
+                        "surface-container-high": "#e7e7f0",
+                        "secondary-container": "#b6b4ff",
+                        "surface-tint": "#4d44e3",
+                        "on-tertiary-container": "#ffd2be",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary-container": "#4f46e5",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2eb",
+                        "tertiary": "#7e3000",
+                        "primary-fixed": "#e2dfff",
+                        "secondary": "#58579b",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "error-container": "#ffdad6",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#2e3037",
+                        "surface": "#faf8ff",
+                        "secondary-fixed": "#e2dfff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "background": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container": "#ededf6",
+                        "outline": "#777587",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#c3c0ff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0F1117;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .glass-panel {
+            background: rgba(28, 30, 38, 0.7);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="dark bg-[#0F1117] text-white antialiased">
+<!-- SideNavBar Integration -->
+<aside class="h-screen w-[240px] fixed left-0 top-0 bg-slate-950 flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-xl font-bold tracking-tighter text-white">Capital Flow</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-indigo-500 font-bold mt-1">Institutional Intelligence</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-white bg-indigo-600/10 border-r-2 border-indigo-500 font-medium" href="#">
+<span class="material-symbols-outlined text-indigo-400">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-slate-100 hover:bg-slate-900 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Transactions
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-slate-100 hover:bg-slate-900 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Insights
+            </a>
+</nav>
+<div class="px-4 mt-auto space-y-1">
+<div class="mb-4 px-2">
+<button class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-bold transition-all active:scale-95">
+                    Upgrade Plan
+                </button>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-slate-100 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-slate-100 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+                Support
+            </a>
+<div class="mt-6 flex items-center gap-3 px-4 py-3 bg-slate-900/50 rounded-xl">
+<img alt="User profile" class="w-8 h-8 rounded-full bg-slate-800" data-alt="close-up professional headshot of a mature executive in a dark suit with soft studio lighting and a neutral gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHF2NF9c-V0GDJ8d7ESmjIrZ_B_A_o51KzlEbRNUoJFdEs7QSXOSOrQ3CIlKHLW3r5JIzYm7gujVDVfyEbI8rthx_akMFRRxIDZR0oF3CZTStWHVAjxJ5ypyLxzPFsQAG8Efp6nCEwr6Z8Uw7YZU9DPnBB8insWkLOwGrtoQgtmxMDm4jhdh-xQbv79Q1SIGFTdqnCBSkqoT5j3SjnBquBWYwMThRFE56UjfXcCy07ic0S7gSIogx6KkGNlI_H7LCHNxuRImhmSBkh"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold text-white truncate">Alex Thorne</p>
+<p class="text-[10px] text-slate-500 truncate">Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] min-h-screen">
+<!-- TopNavBar Integration -->
+<header class="sticky top-0 z-40 bg-[#0F1117]/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-500">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="bg-[#1C1E26] border-none rounded-full py-2 pl-10 pr-4 text-sm text-slate-300 w-64 focus:ring-1 focus:ring-indigo-500/50 transition-all" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+<a class="text-slate-500 hover:text-indigo-400 transition-colors" href="#">Portfolio</a>
+<a class="text-slate-500 hover:text-indigo-400 transition-colors" href="#">Reports</a>
+<a class="text-indigo-400 font-bold border-b-2 border-indigo-600 px-1" href="#">Admin</a>
+</nav>
+<div class="h-4 w-px bg-slate-800"></div>
+<div class="flex items-center gap-4">
+<button class="text-indigo-400 material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dark_mode</button>
+<button class="text-slate-400 material-symbols-outlined hover:text-white transition-colors">notifications</button>
+<div class="flex items-center gap-2 bg-indigo-600/10 px-3 py-1.5 rounded-full border border-indigo-500/20">
+<span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+<span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Admin Live</span>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Page Heading -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-white">Dashboard Overview</h2>
+<p class="text-slate-400 mt-1">Real-time financial status and institutional performance metrics.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-[#1C1E26] hover:bg-[#252833] text-white rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export
+                    </button>
+<button class="px-5 py-2 bg-gradient-to-v from-primary to-primary-container text-white rounded-lg text-sm font-bold flex items-center gap-2 shadow-lg shadow-indigo-900/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Add Entry
+                    </button>
+</div>
+</div>
+<!-- Top Row: Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Total Balance -->
+<div class="bg-[#1C1E26] p-6 rounded-xl border border-white/[0.03] shadow-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">account_balance_wallet</span>
+</div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Total Assets Value</p>
+<h3 class="text-4xl font-extrabold text-white tabular-nums tracking-tighter mb-4">$4,281,090.50</h3>
+<div class="flex items-center gap-2 text-xs font-bold py-1 px-2 bg-emerald-500/10 text-emerald-400 rounded-lg w-fit">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12.4% vs last month
+                    </div>
+</div>
+<!-- Monthly Income -->
+<div class="bg-[#1C1E26] p-6 rounded-xl border border-white/[0.03] shadow-2xl">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Revenue Performance</p>
+<h3 class="text-4xl font-extrabold text-white tabular-nums tracking-tighter mb-4">$142,500.00</h3>
+<div class="flex items-center gap-2 text-xs font-bold py-1 px-2 bg-indigo-500/10 text-indigo-400 rounded-lg w-fit">
+<span class="material-symbols-outlined text-sm">payments</span>
+                        On track for Q3 targets
+                    </div>
+</div>
+<!-- Monthly Expenses -->
+<div class="bg-[#1C1E26] p-6 rounded-xl border border-white/[0.03] shadow-2xl">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Total Burn Rate</p>
+<h3 class="text-4xl font-extrabold text-white tabular-nums tracking-tighter mb-4">$89,210.15</h3>
+<div class="flex items-center gap-2 text-xs font-bold py-1 px-2 bg-rose-500/10 text-rose-400 rounded-lg w-fit">
+<span class="material-symbols-outlined text-sm">warning</span>
+                        8% increase in ops cost
+                    </div>
+</div>
+</div>
+<!-- Middle Row: Analytics Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Balance Trend Chart Area -->
+<div class="lg:col-span-2 bg-[#1C1E26] p-8 rounded-xl border border-white/[0.03]">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="text-lg font-bold text-white">Portfolio Performance</h4>
+<p class="text-slate-500 text-sm">Aggregated balance trends across all sub-accounts</p>
+</div>
+<select class="bg-slate-900 border-none text-xs text-slate-300 rounded-lg focus:ring-indigo-500">
+<option>Last 6 Months</option>
+<option>Year to Date</option>
+</select>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="relative h-64 w-full flex items-end justify-between gap-2">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-white/[0.03] w-full"></div>
+<div class="border-t border-white/[0.03] w-full"></div>
+<div class="border-t border-white/[0.03] w-full"></div>
+<div class="border-t border-white/[0.03] w-full"></div>
+</div>
+<div class="relative flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/40 rounded-t-sm h-[40%] group cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-slate-950 text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">$3.1M</div>
+</div>
+<div class="relative flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/40 rounded-t-sm h-[55%] group cursor-pointer"></div>
+<div class="relative flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/40 rounded-t-sm h-[48%] group cursor-pointer"></div>
+<div class="relative flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/40 rounded-t-sm h-[65%] group cursor-pointer"></div>
+<div class="relative flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/40 rounded-t-sm h-[80%] group cursor-pointer"></div>
+<div class="relative flex-1 bg-indigo-500 rounded-t-sm h-[95%] group cursor-pointer"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
+<span>Jul</span>
+<span>Aug</span>
+</div>
+</div>
+<!-- Spending Breakdown Donut -->
+<div class="bg-[#1C1E26] p-8 rounded-xl border border-white/[0.03] flex flex-col">
+<h4 class="text-lg font-bold text-white mb-1">Expense Allocation</h4>
+<p class="text-slate-500 text-sm mb-8">By operational category</p>
+<div class="flex-1 flex flex-col justify-center items-center relative">
+<!-- Custom CSS Donut Visual -->
+<div class="w-40 h-40 rounded-full border-[12px] border-slate-800 relative flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[12px] border-t-indigo-500 border-r-indigo-400 border-b-transparent border-l-transparent rotate-45"></div>
+<div class="text-center">
+<span class="block text-2xl font-extrabold text-white">42%</span>
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Operations</span>
+</div>
+</div>
+<div class="mt-8 w-full space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+<span class="text-xs text-slate-300">Operations</span>
+</div>
+<span class="text-xs font-bold text-white">$37,468</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-indigo-300"></span>
+<span class="text-xs text-slate-300">Payroll</span>
+</div>
+<span class="text-xs font-bold text-white">$28,547</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-700"></span>
+<span class="text-xs text-slate-300">Marketing</span>
+</div>
+<span class="text-xs font-bold text-white">$23,195</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Transactions Table -->
+<div class="bg-[#1C1E26] rounded-xl border border-white/[0.03] overflow-hidden">
+<div class="p-6 flex items-center justify-between">
+<h4 class="text-lg font-bold text-white">Recent Institutional Transactions</h4>
+<button class="text-indigo-400 text-sm font-bold hover:underline">View All History</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-900/50">
+<tr>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">Entity</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">Category</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">Timestamp</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">Status</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-slate-500 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/[0.03]">
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-indigo-400 text-sm">cloud_done</span>
+</div>
+<span class="text-sm font-semibold text-white">AWS Cloud Services</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400">Infrastructure</td>
+<td class="px-6 py-4 text-sm text-slate-400 tabular-nums">Aug 24, 2024 · 14:20</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">Settled</span>
+</td>
+<td class="px-6 py-4 text-right text-sm font-bold text-white tabular-nums">-$12,450.00</td>
+</tr>
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-indigo-400 text-sm">account_balance</span>
+</div>
+<span class="text-sm font-semibold text-white">Goldman Sachs Yield</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400">Investment</td>
+<td class="px-6 py-4 text-sm text-slate-400 tabular-nums">Aug 23, 2024 · 09:15</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold rounded-md uppercase">Processing</span>
+</td>
+<td class="px-6 py-4 text-right text-sm font-bold text-emerald-400 tabular-nums">+$45,200.00</td>
+</tr>
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-indigo-400 text-sm">workspace_premium</span>
+</div>
+<span class="text-sm font-semibold text-white">Bloomberg Terminal</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400">Information</td>
+<td class="px-6 py-4 text-sm text-slate-400 tabular-nums">Aug 22, 2024 · 18:45</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">Settled</span>
+</td>
+<td class="px-6 py-4 text-right text-sm font-bold text-white tabular-nums">-$2,400.00</td>
+</tr>
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-indigo-400 text-sm">apartment</span>
+</div>
+<span class="text-sm font-semibold text-white">Vanguard Properties</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-400">Leasing</td>
+<td class="px-6 py-4 text-sm text-slate-400 tabular-nums">Aug 21, 2024 · 11:30</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-md uppercase">Settled</span>
+</td>
+<td class="px-6 py-4 text-right text-sm font-bold text-white tabular-nums">-$18,900.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button Contextual Suppression: Not rendered on Overview as per Shell logic, but used here for "Add Entry" context if needed -->
+</body></html>

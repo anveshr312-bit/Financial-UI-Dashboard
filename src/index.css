@@ -1,58 +1,101 @@
 @import "tailwindcss";
 
 @theme {
-  /* Using standard mapping for Tailwind v4 */
-  --color-finance-bg: var(--bg-color);
-  --color-finance-surface: var(--surface-color);
-  --color-finance-primary: var(--primary-color);
-  --color-finance-text-primary: var(--text-primary);
-  --color-finance-text-secondary: var(--text-secondary);
-  --color-finance-border: var(--border-color);
-  --color-finance-success: var(--success-color);
-  --color-finance-danger: var(--danger-color);
-  --color-finance-hover: var(--hover-color);
+  --color-on-secondary-container: #4c1d95; /* Deep violet */
+  --color-tertiary-fixed-dim: #fcd34d;
+  --color-on-primary: #ffffff;
+  --color-on-secondary-fixed: #2e1065;
+  --color-tertiary-container: #b45309;
+  --color-surface-container-highest: #e2e2eb;
+  --color-on-surface: #191b22;
+  --color-on-tertiary-fixed: #451a03;
+  --color-inverse-on-surface: #f0f0f9;
+  --color-surface-dim: #d9d9e2;
+  --color-on-background: #191b22;
+  --color-surface-bright: #faf8ff;
+  --color-surface-container-low: #f3f3fc;
+  --color-on-secondary-fixed-variant: #5b21b6;
+  --color-on-primary-container: #ede9fe;
+  --color-on-primary-fixed-variant: #5b21b6;
+  --color-primary-container: color-mix(in srgb, #7C3AED 10%, transparent); /* primary-soft */
+  --color-on-secondary: #ffffff;
+  --color-surface-variant: #e2e2eb;
+  --color-tertiary: #d97706;
+  --color-primary-fixed: #ddd6fe;
+  --color-secondary: #8b5cf6;
   
-  --font-inter: 'Inter', sans-serif;
+  /* Semantic Colors */
+  --color-error: #DC2626; /* Danger */
+  --color-success: #16A34A; /* Custom Success Semantic */
+  --color-warning: #F59E0B; /* Custom Warning Semantic */
+  
+  --color-primary-fixed-dim: #c4b5fd;
+  --color-on-tertiary-fixed-variant: #78350f;
+  --color-error-container: color-mix(in srgb, #DC2626 10%, transparent);
+  --color-primary: #7C3AED; /* Deep Violet */
+  --color-inverse-surface: #2e3037;
+  --color-surface: #faf8ff;
+  --color-secondary-fixed: #ede9fe;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-fixed: #fef3c7;
+  --color-background: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-outline-variant: #c7c4d8;
+  --color-on-primary-fixed: #2e1065;
+  --color-surface-container: #ededf6;
+  --color-outline: #777587;
+  --color-on-error-container: #7f1d1d;
+  --color-secondary-fixed-dim: #ddd6fe;
+  --color-on-error: #ffffff;
+  --color-on-surface-variant: #464555;
+
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
 }
 
-:root {
-  /* Light Theme */
-  --bg-color: #F5F7FA;
-  --surface-color: #FFFFFF;
-  --primary-color: #4F6EF7;
-  --text-primary: #1A1D23;
-  --text-secondary: #6B7280;
-  --border-color: #E5E7EB;
-  --success-color: #22C55E;
-  --danger-color: #EF4444;
-  --hover-color: #F9FAFB;
+@layer base {
+  .mono-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .dark {
-  /* Dark Theme */
-  --bg-color: #0F172A;
-  --surface-color: #1E293B;
-  --primary-color: #4F6EF7;  /* Accent remains consistent */
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --border-color: #334155;
-  --success-color: #22C55E;
-  --danger-color: #EF4444;
-  --hover-color: #334155; 
+  /* Using specific values for dark mode layout */
+  --color-surface: #0F1117;
+  --color-background: #0F1117;
+  --color-surface-container-lowest: #1C1E26;
+  --color-surface-container-low: #151720;
+  --color-surface-container: #20232B;
+  --color-surface-container-high: #272A32;
+  --color-surface-container-highest: #31333A;
+  --color-on-surface: #F0F0F9;
+  --color-on-surface-variant: #A1A1AA; /* neutral-400 */
+  --color-outline-variant: #3F3F46; /* neutral-700 */
+  
+  --color-primary: #A78BFA; /* Primary-light for contrast in dark mode */
+  --color-primary-container: color-mix(in srgb, #A78BFA 15%, transparent); /* primary-soft */
+  --color-on-primary-container: #DDD6FE;
+  
+  --color-error: #EF4444; /* Danger slightly brighter */
+  --color-error-container: color-mix(in srgb, #EF4444 15%, transparent);
+  --color-success: #22C55E; /* Success slightly brighter */
+  --color-warning: #FBBF24; /* Warning slightly brighter */
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: var(--font-inter);
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-/* Base interactive transitions */
-button, select, input, a, .card-transition {
-  transition-property: color, background-color, border-color, box-shadow, transform;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+/* Glassmorphism setup */
+.glass-panel {
+  background: color-mix(in srgb, var(--color-surface-container-lowest) 70%, transparent);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 12px 32px -4px rgba(25, 27, 34, 0.06);
 }

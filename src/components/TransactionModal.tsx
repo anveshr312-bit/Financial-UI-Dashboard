@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { X, Trash2 } from 'lucide-react';
 import { Transaction, TransactionCategory, TransactionType } from '../types';
 import { useDashboard } from '../context/DashboardContext';
 
@@ -62,35 +61,35 @@ export const TransactionModal = ({ isOpen, onClose, onSubmit, initialData }: Tra
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="bg-finance-surface rounded-[12px] shadow-[0_20px_40px_rgba(25,28,34,0.12)] w-full max-w-md animate-in zoom-in-95 duration-200">
-        <div className="flex justify-between items-center p-5 border-b border-finance-border">
-          <h2 className="text-[18px] font-semibold text-finance-text-primary m-0">
-            {initialData ? 'Edit Transaction' : 'Add Transaction'}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-300 ease-out">
+      <div className="glass-panel p-8 rounded-2xl w-full max-w-md shadow-2xl relative animate-in zoom-in-95 duration-300 ease-out border border-outline-variant/20">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold tracking-tight text-on-surface">
+            {initialData ? 'Edit Transaction' : 'New Transaction'}
           </h2>
           <button 
             onClick={onClose}
-            className="text-finance-text-secondary hover:text-finance-text-primary transition-colors inline-flex p-1 rounded-full hover:bg-finance-bg"
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-colors"
           >
-            <X size={20} />
+            <span className="material-symbols-outlined text-sm">close</span>
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           {isConfirmingDelete ? (
             <div className="flex flex-col items-center justify-center py-6 text-center animate-in zoom-in-95 duration-200">
-              <div className="w-12 h-12 rounded-full bg-[#EF44441A] flex items-center justify-center mb-4">
-                <Trash2 size={24} className="text-finance-danger" />
+              <div className="w-14 h-14 rounded-full bg-error-container flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-3xl text-error">delete_forever</span>
               </div>
-              <h3 className="text-[16px] font-semibold text-finance-text-primary mb-2">Delete Transaction</h3>
-              <p className="text-[14px] text-finance-text-secondary mb-6">
+              <h3 className="text-lg font-bold text-on-surface mb-2">Delete Transaction</h3>
+              <p className="text-sm text-on-surface-variant mb-6">
                 Are you sure you want to delete this transaction? This action cannot be undone.
               </p>
               <div className="flex w-full gap-3">
                 <button
                   type="button"
                   onClick={() => setIsConfirmingDelete(false)}
-                  className="flex-1 px-4 py-2.5 rounded-[8px] text-sm font-medium text-finance-text-primary bg-finance-surface border border-finance-border hover:bg-finance-hover hover:border-finance-text-secondary/30 transition-all duration-200"
+                  className="flex-1 py-3 bg-surface-container-high text-on-surface font-bold text-sm rounded-xl hover:bg-surface-container-highest transition-colors"
                 >
                   Cancel
                 </button>
@@ -102,118 +101,123 @@ export const TransactionModal = ({ isOpen, onClose, onSubmit, initialData }: Tra
                       onClose();
                     }
                   }}
-                  className="flex-1 px-4 py-2.5 rounded-[8px] text-sm font-medium text-white bg-finance-danger hover:bg-finance-danger/90 transition-all duration-200 shadow-[0_2px_8px_rgba(239,68,68,0.3)] hover:shadow-[0_4px_12px_rgba(239,68,68,0.4)] hover:-translate-y-[1px]"
+                  className="flex-1 py-3 bg-error text-on-error font-bold text-sm rounded-xl hover:opacity-90 transition-opacity"
                 >
-                  Confirm
+                  Delete
                 </button>
               </div>
             </div>
           ) : (
             <>
-              {error && <div className="text-[13px] text-finance-danger bg-[#EF44441A] p-3 rounded-[8px] animate-in slide-in-from-top-1">{error}</div>}
+              {error && <div className="text-xs font-bold text-error bg-error-container/50 p-3 rounded-lg flex items-center gap-2"><span className="material-symbols-outlined text-sm">error</span>{error}</div>}
               
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-medium text-finance-text-primary">Type</label>
-                <div className="flex gap-2">
-                  <button
+              <div className="grid grid-cols-2 gap-3 bg-surface-container-lowest p-1.5 rounded-xl border border-outline-variant/10">
+                 <button
                     type="button"
                     onClick={() => setType('expense')}
-                    className={`flex-1 py-2.5 rounded-[8px] text-sm font-medium transition-all duration-200 border ${
+                    className={`py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all ${
                       type === 'expense' 
-                        ? 'bg-[#EF44441A] border-finance-danger/30 text-finance-danger scale-[1.02] shadow-sm' 
-                        : 'bg-finance-surface border-finance-border text-finance-text-secondary hover:bg-finance-hover hover:scale-[1.01]'
+                        ? 'bg-error-container text-error shadow-sm' 
+                        : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                     }`}
                   >
+                    <span className="material-symbols-outlined text-sm">arrow_outward</span>
                     Expense
                   </button>
                   <button
                     type="button"
                     onClick={() => setType('income')}
-                    className={`flex-1 py-2.5 rounded-[8px] text-sm font-medium transition-all duration-200 border ${
+                    className={`py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all ${
                       type === 'income' 
-                        ? 'bg-[#22C55E1A] border-finance-success/30 text-finance-success scale-[1.02] shadow-sm' 
-                        : 'bg-finance-surface border-finance-border text-finance-text-secondary hover:bg-finance-hover hover:scale-[1.01]'
+                        ? 'bg-primary-container text-primary shadow-sm' 
+                        : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                     }`}
                   >
+                    <span className="material-symbols-outlined text-sm">south_west</span>
                     Income
                   </button>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="amount" className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Amount</label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">$</span>
+                    <input
+                      id="amount"
+                      type="number"
+                      step="0.01"
+                      min="0.01"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="w-full h-12 bg-surface-container-low border-none rounded-xl pl-8 pr-4 text-sm font-bold focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-on-surface-variant/50"
+                      placeholder="0.00"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="date" className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Date</label>
+                    <input
+                      id="date"
+                      type="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="w-full h-12 bg-surface-container-low border-none rounded-xl px-4 text-sm font-bold focus:ring-2 focus:ring-primary/20 text-on-surface"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="category" className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Category</label>
+                    <div className="relative">
+                      <select
+                        id="category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value as TransactionCategory)}
+                        className="appearance-none w-full h-12 bg-surface-container-low border-none rounded-xl pl-4 pr-10 text-sm font-bold focus:ring-2 focus:ring-primary/20 text-on-surface"
+                      >
+                        <option value="Food">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Health">Health</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <span className="material-symbols-outlined absolute right-3 top-[14px] pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="amount" className="text-[13px] font-medium text-finance-text-primary">Amount</label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-finance-text-secondary font-medium">$</span>
-                  <input
-                    id="amount"
-                    type="number"
-                    step="0.01"
-                    min="0.01"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    className="w-full bg-finance-bg border border-finance-border rounded-[8px] pl-7 pr-3 py-2.5 text-sm font-medium text-finance-text-primary focus:outline-none focus:border-finance-primary focus:ring-1 focus:ring-finance-primary transition-all duration-200 hover:border-finance-text-secondary/30"
-                    placeholder="0.00"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="date" className="text-[13px] font-medium text-finance-text-primary">Date</label>
-                <input
-                  id="date"
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-finance-bg border border-finance-border rounded-[8px] px-3 py-2.5 text-sm font-medium text-finance-text-primary focus:outline-none focus:border-finance-primary focus:ring-1 focus:ring-finance-primary transition-all duration-200 hover:border-finance-text-secondary/30"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="category" className="text-[13px] font-medium text-finance-text-primary">Category</label>
-                <select
-                  id="category"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value as TransactionCategory)}
-                  className="w-full bg-finance-bg border border-finance-border rounded-[8px] px-3 py-2.5 text-sm font-medium text-finance-text-primary focus:outline-none focus:border-finance-primary focus:ring-1 focus:ring-finance-primary transition-all duration-200 hover:border-finance-text-secondary/30"
-                >
-                  <option value="Food">Food</option>
-                  <option value="Transport">Transport</option>
-                  <option value="Utilities">Utilities</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Health">Health</option>
-                  <option value="Salary">Salary</option>
-                  <option value="Freelance">Freelance</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              <div className="pt-4 flex items-center justify-between mt-2 border-t border-finance-border border-dashed">
-                {role === 'admin' && initialData ? (
-                  <button
-                    type="button"
-                    onClick={() => setIsConfirmingDelete(true)}
-                    className="px-4 py-2.5 rounded-[8px] text-sm font-medium text-finance-danger border border-transparent hover:border-finance-danger/30 hover:bg-[#EF44441A] transition-all duration-200"
-                  >
-                    Delete
-                  </button>
-                ) : (
-                  <div></div>
-                )}
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="px-5 py-2.5 rounded-[8px] text-sm font-medium text-finance-text-secondary bg-finance-surface border border-finance-border hover:bg-finance-hover hover:text-finance-text-primary transition-all duration-200"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-5 py-2.5 rounded-[8px] text-sm font-medium bg-finance-primary text-white hover:bg-finance-primary/90 transition-all duration-200 shadow-[0_2px_8px_rgba(79,110,247,0.3)] hover:shadow-[0_4px_12px_rgba(79,110,247,0.4)] hover:-translate-y-[1px]"
-                  >
-                    {initialData ? 'Save Changes' : 'Add Transaction'}
-                  </button>
-                </div>
+              <div className="pt-2 flex items-center justify-between gap-3">
+                 {role === 'admin' && initialData ? (
+                   <button
+                     type="button"
+                     onClick={() => setIsConfirmingDelete(true)}
+                     className="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-error-container text-error hover:bg-error hover:text-white transition-colors"
+                   >
+                     <span className="material-symbols-outlined text-[20px]">delete</span>
+                   </button>
+                 ) : (
+                   <div></div>
+                 )}
+                 <div className="flex gap-3 flex-1 justify-end">
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="px-6 py-3 bg-surface-container-high text-on-surface font-bold text-sm rounded-full hover:bg-surface-container-highest transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-8 py-3 bg-gradient-to-b from-primary to-primary-container text-white font-bold text-sm rounded-full shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all"
+                    >
+                      {initialData ? 'Save' : 'Confirm'}
+                    </button>
+                 </div>
               </div>
             </>
           )}

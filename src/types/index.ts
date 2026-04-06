@@ -1,5 +1,14 @@
 export type Role = 'viewer' | 'admin';
 export type Theme = 'light' | 'dark';
+export type DashboardView = 'overview' | 'transactions' | 'analytics' | 'reports' | 'admin';
+
+export interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  time: string;
+  isRead: boolean;
+}
 
 export type TransactionType = 'income' | 'expense';
 
@@ -26,4 +35,6 @@ export interface Filters {
   category: string;
   type: string;
   sortBy: string;
+  startDate?: string;
+  endDate?: string;
 }
