@@ -7,7 +7,7 @@ export const ProfileMenu = () => {
   const { role, setRole, theme, setTheme } = useDashboard();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const userName = 'Alex Rivera';
+  const userName = 'Anvesh Rathore';
 
   useEffect(() => {
     if (!isOpen) return undefined;

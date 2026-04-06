@@ -13,8 +13,8 @@ export const Sidebar = () => {
       <aside className={`bg-slate-950 h-screen w-[240px] fixed left-0 top-0 flex-col py-8 z-50 font-sans antialiased tracking-tight flex transform transition-transform duration-300 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="px-6 mb-10 flex justify-between items-center">
           <div>
-            <span className="text-xl font-bold tracking-tighter text-white uppercase">Equitas</span>
-            <p className="text-[10px] text-slate-500 tracking-[0.2em] mt-1 uppercase">Institutional Intelligence</p>
+            <span className="text-xl font-bold tracking-tighter text-white uppercase">Finova</span>
+            <p className="text-[10px] text-slate-500 tracking-[0.2em] mt-1 uppercase">Smart Financial Tracking</p>
           </div>
           <button className="lg:hidden text-white/50 hover:text-white" onClick={() => setSidebarOpen(false)}>
              <span className="material-symbols-outlined">close</span>
